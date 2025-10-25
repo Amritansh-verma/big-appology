@@ -4,12 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sorry — Cold Love (Send Reply to Email)</title>
-  <!--
-    FINAL single-file webpage (Option B: real reply)
-    - Reply form sends to: amritanshverma629@gmail.com via FormSubmit.co
-    - All in one page (7 sections). Edit comments marked with COMMENT:
-    - Put your images in images/photo1.jpg, images/photo2.jpg, images/photo3.jpg
-  -->
   <style>
     :root{
       --bg1: #eaf2ff; --bg2: #f0e9ff; --accent:#7aa7ff; --muted:#64748b;
@@ -76,14 +70,13 @@
       <div class="card" style="display:flex;gap:24px;align-items:center;">
         <div id="hero" style="width:100%">
           <div class="intro">
-            <h1><!-- COMMENT: Change main heading here -->Sorry my love — Galti ho gayi</h1>
-            <h2><!-- COMMENT: Subheading -->I never wanted to hurt you</h2>
-            <p class="quote">/* COMMENT: Short quote visible under heading. Edit as you like */<em>I didn’t lose patience with you — I lost control of my feelings. I am sorry.</em></p>
-            <p class="note">Scroll down to see everything. All text is editable inside the code comments.</p>
+            <h1>Sorry my love — Galti ho gayi</h1>
+            <h2>I never wanted to hurt you</h2>
+            <p class="quote"><em>I didn’t lose patience with you — I lost control of my feelings. I am sorry.</em></p>
+            <p class="note">Scroll down to see everything.</p>
           </div>
           <div style="display:flex;align-items:center;justify-content:center">
             <div style="width:260px;height:340px;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(20,30,60,0.08);background:linear-gradient(180deg,#f8fbff,#eef5ff);display:flex;align-items:center;justify-content:center">
-              <!-- COMMENT: Replace with your hero image; maintain aspect ratio -->
               <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="hero" style="width:100%;height:100%;object-fit:cover;opacity:.95">
             </div>
           </div>
@@ -97,21 +90,19 @@
         <h1>The Time We Spent</h1>
         <h2>Some moments I always keep with me</h2>
         <div class="mem-row" style="margin-top:20px">
-          <!-- COMMENT: Replace these img src attributes with at least 3 of your own photos -->
           <div style="min-width:320px">
             <img class="mem-photo" src="images/photo1.jpg" alt="memory1">
-            <div class="mem-caption">/* Caption 1 — edit this */ Our late-night talks</div>
+            <div class="mem-caption">Our late-night talks</div>
           </div>
           <div style="min-width:320px">
             <img class="mem-photo" src="images/photo2.jpg" alt="memory2">
-            <div class="mem-caption">/* Caption 2 — edit this */ The day we laughed so hard</div>
+            <div class="mem-caption">The day we laughed so hard</div>
           </div>
           <div style="min-width:320px">
             <img class="mem-photo" src="images/photo3.jpg" alt="memory3">
-            <div class="mem-caption">/* Caption 3 — edit this */ Our small silly fights</div>
+            <div class="mem-caption">Our small silly fights</div>
           </div>
         </div>
-        <p class="note">Tip: Put your photos in an "images/" folder next to this HTML file and keep names photo1.jpg, photo2.jpg, photo3.jpg (or change src accordingly).</p>
       </div>
     </section>
 
@@ -121,19 +112,12 @@
         <h1>A Letter From Me to You</h1>
         <h2>Read it slowly</h2>
         <div class="letter" style="margin-top:16px">
-          <!-- COMMENT: Edit letter freely -->
           <strong>My dear,</strong>
-
           I am writing this because some things are better said plainly.
-
           I wasn’t angry because I stopped caring. I was angry because I was scared — scared that I might lose the rare warmth we share. Sometimes my words were sharper than they should have been; sometimes my silence spoke louder than my love.
-
           I am sorry for the times I made you feel unimportant. You are everything calm and kind in my life, and I realised my actions didn’t show it.
-
           I won’t ask you to forget. I will only ask you to hear me out and give me a chance to be better.
-
           With all my heart,
-
           — Amritansh
         </div>
       </div>
@@ -145,12 +129,10 @@
         <h1>Why I Was Angry</h1>
         <h2>Truth, explained</h2>
         <div class="why-list" style="margin-top:18px">
-          <!-- COMMENT: Personalize these -->
           <div class="why-item">1. I was overwhelmed by stress and didn't manage it well.</div>
           <div class="why-item">2. I took my frustration out on you instead of talking it out.</div>
           <div class="why-item">3. I feared losing you and let that fear sound like anger.</div>
         </div>
-        <p class="note">You can expand each item into a paragraph if you want to explain more.</p>
       </div>
     </section>
 
@@ -158,10 +140,8 @@
     <section id="s5">
       <div class="card">
         <h1>Let’s See How Well You Remember Us</h1>
-        <h2>5 quick questions (fun, not serious)</h2>
-        <div class="quiz" id="quiz">
-          <!-- Questions injected by JS -->
-        </div>
+        <h2>5 multiple-choice questions</h2>
+        <div class="quiz" id="quiz"></div>
         <div style="margin-top:12px">
           <button class="send-btn" id="submit-quiz">Check Answers</button>
           <div id="quiz-result" style="margin-top:12px"></div>
@@ -181,24 +161,19 @@
       </div>
     </section>
 
-    <!-- 7. Reply form (real email send) -->
+    <!-- 7. Reply form -->
     <section id="s7">
       <div class="card">
         <h1>Your Reply</h1>
         <h2>I will receive this as an email</h2>
-
-        <!-- COMMENT: FormSubmit.co forwards to the email in the action attribute -->
         <form id="replyForm" class="reply-form" action="https://formsubmit.co/amritanshverma629@gmail.com" method="POST">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" value="New reply from the apology page">
-          <!-- Optional: add _next to redirect; we handle via AJAX and popup instead -->
           <label>Write your reply below (I will get it on my email):</label>
           <textarea name="message" id="replyMessage" placeholder="Type your message..." required></textarea>
           <input type="email" name="email" placeholder="Your email (optional)" />
           <button type="submit" class="send-btn">Send Reply</button>
         </form>
-
-        <p class="note">After sending, a thank-you popup will appear. The email will be delivered to: <strong>amritanshverma629@gmail.com</strong></p>
       </div>
     </section>
 
@@ -216,112 +191,66 @@
   </div>
 
   <script>
-    // Helper to create falling emojis/hearts
-    function createFallingEmoji(char, count=12){
-      const layer = document.getElementById('fall-layer');
+    const fallLayer = document.getElementById('fall-layer');
+    function createFallingEmoji(char,count=12){
       for(let i=0;i<count;i++){
-        const el = document.createElement('div');
-        el.textContent = char;
-        el.style.position='absolute';
-        el.style.left = (Math.random()*100)+'%';
-        el.style.top = '-10%';
-        el.style.fontSize = (12+Math.random()*28)+'px';
-        el.style.opacity = (0.6+Math.random()*0.4);
-        el.style.transform = 'translateY(0) rotate('+ (Math.random()*40-20) +'deg)';
-        el.style.transition = 'transform 2.5s linear, top 2.5s linear, opacity 1s linear';
-        layer.appendChild(el);
-        setTimeout(()=>{ el.style.top = (100 + Math.random()*10) + '%'; el.style.transform = 'translateY(0) rotate('+ (Math.random()*160-80) +'deg)'; },20 + i*80);
-        setTimeout(()=> el.remove(), 4000 + Math.random()*1000);
+        const el=document.createElement('div'); el.textContent=char;
+        el.style.position='absolute'; el.style.left=Math.random()*100+'%';
+        el.style.top='-10%'; el.style.fontSize=(12+Math.random()*28)+'px';
+        el.style.opacity=0.6+Math.random()*0.4;
+        el.style.transform='translateY(0) rotate('+(Math.random()*40-20)+'deg)';
+        el.style.transition='transform 2.5s linear, top 2.5s linear, opacity 1s linear';
+        fallLayer.appendChild(el);
+        setTimeout(()=>{ el.style.top=100+Math.random()*10+'%'; el.style.transform='translateY(0) rotate('+(Math.random()*160-80)+'deg)';},20+i*80);
+        setTimeout(()=>el.remove(),4000+Math.random()*1000);
       }
     }
 
-    // Quiz questions (edit here if needed). Answers checked lowercase exact.
+    // Quiz multiple-choice
     const quizQuestions = [
-      {q: "Where did we first talk (place or app)?", a: "college"},
-      {q: "Which small thing of mine makes you laugh?", a: "laugh"},
-      {q: "What snack do I call you by nickname for?", a: "rasmalai"},
-      {q: "Which month did we meet? (answer with month name)", a: "january"},
-      {q: "What's one thing I always say to make you smile?", a: "i miss you"}
+      {q:"Where did we first talk?", options:["College","WhatsApp","School","Mall"], a:"College"},
+      {q:"Which small thing of mine makes you laugh?", options:["My jokes","My laugh","My snacks","My hair style"], a:"My jokes"},
+      {q:"What snack do I call you by nickname for?", options:["Rasmalai","Chocolate","Ice Cream","Cookies"], a:"Rasmalai"},
+      {q:"Which month did we meet?", options:["January","March","May","December"], a:"January"},
+      {q:"What's one thing I always say to make you smile?", options:["I miss you","Be happy","Hello","Good night"], a:"I miss you"}
     ];
 
-    // Render quiz
-    const quizEl = document.getElementById('quiz');
-    quizQuestions.forEach((item, idx)=>{
-      const div = document.createElement('div');
-      div.className='question';
-      div.innerHTML = `<div style="font-weight:700">Q${idx+1}. ${item.q}</div>
-      <div style='margin-top:8px'><input data-idx='${idx}' class='qinput' placeholder='Your answer...' style='width:100%;padding:10px;border-radius:8px;border:1px solid rgba(10,20,40,0.06)'></div>`;
+    const quizEl=document.getElementById('quiz');
+    quizQuestions.forEach((item,idx)=>{
+      const div=document.createElement('div'); div.className='question';
+      let optionsHTML='';
+      item.options.forEach(opt=>{
+        optionsHTML+=`<div style="margin-top:6px"><label><input type="radio" name="q${idx}" value="${opt}" /> ${opt}</label></div>`;
+      });
+      div.innerHTML=`<div style="font-weight:700">Q${idx+1}. ${item.q}</div>${optionsHTML}`;
       quizEl.appendChild(div);
     });
 
-    document.getElementById('submit-quiz').addEventListener('click', ()=>{
-      const inputs = document.querySelectorAll('.qinput');
-      let correctCount = 0;
-      inputs.forEach(inp=>{
-        const idx = Number(inp.dataset.idx);
-        const val = (inp.value||'').toString().toLowerCase().trim();
-        const target = quizQuestions[idx].a.toLowerCase().trim();
-        if(val === target) correctCount++;
+    document.getElementById('submit-quiz').addEventListener('click',()=>{
+      let correctCount=0;
+      quizQuestions.forEach((item,idx)=>{
+        const sel=document.querySelector(`input[name="q${idx}"]:checked`);
+        if(sel){
+          if(sel.value===item.a){correctCount++; createFallingEmoji('💖',6);}
+          else{createFallingEmoji('😔',6);}
+        } else {createFallingEmoji('😔',6);}
       });
-      const result = document.getElementById('quiz-result');
-      result.innerHTML = `<strong>${correctCount} / ${quizQuestions.length} correct</strong>`;
-      if(correctCount === quizQuestions.length){
-        createFallingEmoji('💖', 24);
-        result.innerHTML += ' — Perfect! Hearts shower!';
-      } else {
-        createFallingEmoji('😔', 12);
-        result.innerHTML += ' — Not all correct. That\\'s okay.';
-      }
+      document.getElementById('quiz-result').innerHTML=`<strong>${correctCount} / ${quizQuestions.length} correct</strong>`;
     });
 
-    // Forgive button scrolls to reply
-    document.getElementById('forgive-cta').addEventListener('click', ()=>{
-      document.getElementById('s7').scrollIntoView({behavior:'smooth'});
-      createFallingEmoji('💙', 18);
-    });
+    document.getElementById('forgive-cta').addEventListener('click',()=>{document.getElementById('s7').scrollIntoView({behavior:'smooth'}); createFallingEmoji('💙',18);});
 
-    // Reply form (AJAX POST to FormSubmit.co — forwards to your email)
-    const replyForm = document.getElementById('replyForm');
-    replyForm.addEventListener('submit', async function(e){
+    const replyForm=document.getElementById('replyForm');
+    replyForm.addEventListener('submit',async function(e){
       e.preventDefault();
-      const data = new FormData(replyForm);
-      const action = replyForm.action;
+      const data=new FormData(replyForm);
       try{
-        const res = await fetch(action, {method:'POST',body:data,headers:{'Accept':'application/json'}});
-        if(res.ok){
-          document.getElementById('popup').classList.add('show');
-          createFallingEmoji('💫', 24);
-          replyForm.reset();
-        } else {
-          alert('There was a problem sending your message. Please try again.');
-        }
-      }catch(err){
-        console.error(err);
-        alert('Failed to send — maybe offline or blocked by browser/privacy. If this happens, try using a different network or a direct Formspree endpoint.');
-      }
+        const res=await fetch(replyForm.action,{method:'POST',body:data,headers:{'Accept':'application/json'}});
+        if(res.ok){document.getElementById('popup').classList.add('show'); createFallingEmoji('💫',24); replyForm.reset();}
+        else{alert('Problem sending message. Try again.');}
+      }catch(err){console.error(err); alert('Failed to send.');}
     });
-    document.getElementById('close-popup').addEventListener('click', ()=>{
-      document.getElementById('popup').classList.remove('show');
-    });
-
-    // Section entrance animations
-    const sections = document.querySelectorAll('section');
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting){
-          en.target.style.opacity = 0;
-          en.target.style.transform = 'translateY(14px)';
-          setTimeout(()=>{en.target.style.transition='all .7s ease';en.target.style.opacity=1;en.target.style.transform='translateY(0)';},80);
-        }
-      });
-    },{threshold:0.12});
-    sections.forEach(s=>obs.observe(s));
-
-    // Dev shortcuts: H for hearts, S for sad
-    window.addEventListener('keydown',(e)=>{
-      if(e.key.toLowerCase()==='h') createFallingEmoji('💖', 18);
-      if(e.key.toLowerCase()==='s') createFallingEmoji('😔', 12);
-    });
+    document.getElementById('close-popup').addEventListener('click',()=>{document.getElementById('popup').classList.remove('show');});
   </script>
 </body>
 </html>
