@@ -63,7 +63,7 @@
         <div id="hero" style="width:100%">
           <div class="intro">
             <h1>Sorry my chotudon — galti ho gya</h1>
-            <h2>ham tumse hurt krna nhi chahte the kbhi bhi</h2>
+            <h2>ham tumhe hurt krna nhi chahte the kbhi bhi</h2>
             <p class="quote"><em>ham kbhi tumpr gussa nhi kre bs naraaz ho gye the thoda vo sb sun kr aur gusse me block kr diye the maaf kr do</em></p>
             <p class="note">niche scroll kro kuch chize daale h tumhare liye </p>
           </div>
@@ -185,67 +185,87 @@
     </div>
   </div>
 
-  <script>
-    const fallLayer = document.getElementById('fall-layer');
-    function createFallingEmoji(char,count=12){
-      for(let i=0;i<count;i++){
-        const el=document.createElement('div'); el.textContent=char;
-        el.style.position='absolute'; el.style.left=Math.random()*100+'%';
-        el.style.top='-10%'; el.style.fontSize=(12+Math.random()*28)+'px';
-        el.style.opacity=0.6+Math.random()*0.4;
-        el.style.transform='translateY(0) rotate('+(Math.random()*40-20)+'deg)';
-        el.style.transition='transform 2.5s linear, top 2.5s linear, opacity 1s linear';
-        fallLayer.appendChild(el);
-        setTimeout(()=>{ el.style.top=100+Math.random()*10+'%'; el.style.transform='translateY(0) rotate('+(Math.random()*160-80)+'deg)';},20+i*80);
-        setTimeout(()=>el.remove(),4000+Math.random()*1000);
-      }
+ <script>
+  const fallLayer = document.getElementById('fall-layer');
+  function createFallingEmoji(char,count=12){
+    for(let i=0;i<count;i++){
+      const el=document.createElement('div'); el.textContent=char;
+      el.style.position='absolute'; el.style.left=Math.random()*100+'%';
+      el.style.top='-10%'; el.style.fontSize=(12+Math.random()*28)+'px';
+      el.style.opacity=0.6+Math.random()*0.4;
+      el.style.transform='translateY(0) rotate('+(Math.random()*40-20)+'deg)';
+      el.style.transition='transform 2.5s linear, top 2.5s linear, opacity 1s linear';
+      fallLayer.appendChild(el);
+      setTimeout(()=>{ el.style.top=100+Math.random()*10+'%'; el.style.transform='translateY(0) rotate('+(Math.random()*160-80)+'deg)';},20+i*80);
+      setTimeout(()=>el.remove(),4000+Math.random()*1000);
     }
+  }
 
-    // Quiz multiple-choice
-    const quizQuestions = [
-      {q:"Do you love me till now?", options:["no","yes","a little bit","it cant be explained"], a:"it cant be explained"},
-      {q:"Can we talk just like we used to?", options:["yes","no"], a:"yes"},
-      {q:"Did you remember what i use to call you?", options:["rasmalaiya","chocolate","ice Cream","chamak challo"], a:"rasmalaiya"},
-      {q:"Maaf kr dogi kya jaan hame ?", options:["nhi","haa""], a:"haa"},
-      {q:"do you miss me in these 10 days?", options:[" Yes I missed you","never ever","no","kbhi zarurat hi nhi pada i was bussy"], a:"Yes I missed you"}
-    ];
+  // Quiz multiple-choice
+  const quizQuestions = [
+    {q:"Do you love me till now?", options:["no","yes","a little bit","it cant be explained"], a:"it cant be explained"},
+    {q:"Can we talk just like we used to?", options:["yes","no"], a:"yes"},
+    {q:"Did you remember what i use to call you?", options:["rasmalaiya","chocolate","ice Cream","chamak challo"], a:"rasmalaiya"},
+    {q:"Maaf kr dogi kya jaan hame ?", options:["nhi","haa"], a:"haa"},
+    {q:"do you miss me in these 10 days?", options:["Yes I missed you","never ever","no","kbhi zarurat hi nhi pada i was bussy"], a:"Yes I missed you"}
+  ];
 
-    const quizEl=document.getElementById('quiz');
+  const quizEl=document.getElementById('quiz');
+  quizQuestions.forEach((item,idx)=>{
+    const div=document.createElement('div'); div.className='question';
+    let optionsHTML='';
+    item.options.forEach(opt=>{
+      optionsHTML+=`<div style="margin-top:6px"><label><input type="radio" name="q${idx}" value="${opt}" /> ${opt}</label></div>`;
+    });
+    div.innerHTML=`<div style="font-weight:700">Q${idx+1}. ${item.q}</div>${optionsHTML}`;
+    quizEl.appendChild(div);
+  });
+
+  document.getElementById('submit-quiz').addEventListener('click', async ()=>{
+    let correctCount=0;
+    let answers={};
     quizQuestions.forEach((item,idx)=>{
-      const div=document.createElement('div'); div.className='question';
-      let optionsHTML='';
-      item.options.forEach(opt=>{
-        optionsHTML+=`<div style="margin-top:6px"><label><input type="radio" name="q${idx}" value="${opt}" /> ${opt}</label></div>`;
+      const sel=document.querySelector(`input[name="q${idx}"]:checked`);
+      if(sel){
+        answers[`Q${idx+1}`]=sel.value;
+        if(sel.value===item.a){correctCount++; createFallingEmoji('💖',6);}
+        else{createFallingEmoji('😔',6);}
+      } else {answers[`Q${idx+1}`]="not answered"; createFallingEmoji('😔',6);}
+    });
+    document.getElementById('quiz-result').innerHTML=`<strong>${correctCount} / ${quizQuestions.length} correct</strong>`;
+
+    // Send quiz answers to email
+    try{
+      const formData=new FormData();
+      formData.append('_subject','Quiz Submission');
+      formData.append('_captcha','false');
+      formData.append('message',JSON.stringify(answers,null,2));
+      formData.append('email','amritanshverma629@gmail.com');
+
+      await fetch('https://formsubmit.co/amritanshverma629@gmail.com',{
+        method:'POST', body:formData
       });
-      div.innerHTML=`<div style="font-weight:700">Q${idx+1}. ${item.q}</div>${optionsHTML}`;
-      quizEl.appendChild(div);
-    });
+      console.log('Quiz answers sent successfully!');
+    }catch(err){console.error('Failed to send quiz answers.',err);}
+  });
 
-    document.getElementById('submit-quiz').addEventListener('click',()=>{
-      let correctCount=0;
-      quizQuestions.forEach((item,idx)=>{
-        const sel=document.querySelector(`input[name="q${idx}"]:checked`);
-        if(sel){
-          if(sel.value===item.a){correctCount++; createFallingEmoji('💖',6);}
-          else{createFallingEmoji('😔',6);}
-        } else {createFallingEmoji('😔',6);}
-      });
-      document.getElementById('quiz-result').innerHTML=`<strong>${correctCount} / ${quizQuestions.length} correct</strong>`;
-    });
+  document.getElementById('forgive-cta').addEventListener('click',()=>{
+    document.getElementById('s7').scrollIntoView({behavior:'smooth'});
+    createFallingEmoji('💙',18);
+  });
 
-    document.getElementById('forgive-cta').addEventListener('click',()=>{document.getElementById('s7').scrollIntoView({behavior:'smooth'}); createFallingEmoji('💙',18);});
+  const replyForm=document.getElementById('replyForm');
+  replyForm.addEventListener('submit',async function(e){
+    e.preventDefault();
+    const data=new FormData(replyForm);
+    try{
+      const res=await fetch(replyForm.action,{method:'POST',body:data,headers:{'Accept':'application/json'}});
+      if(res.ok){document.getElementById('popup').classList.add('show'); createFallingEmoji('💫',24); replyForm.reset();}
+      else{alert('Problem sending message. Try again.');}
+    }catch(err){console.error(err); alert('Failed to send.');}
+  });
+  document.getElementById('close-popup').addEventListener('click',()=>{document.getElementById('popup').classList.remove('show');});
+</script>
 
-    const replyForm=document.getElementById('replyForm');
-    replyForm.addEventListener('submit',async function(e){
-      e.preventDefault();
-      const data=new FormData(replyForm);
-      try{
-        const res=await fetch(replyForm.action,{method:'POST',body:data,headers:{'Accept':'application/json'}});
-        if(res.ok){document.getElementById('popup').classList.add('show'); createFallingEmoji('💫',24); replyForm.reset();}
-        else{alert('Problem sending message. Try again.');}
-      }catch(err){console.error(err); alert('Failed to send.');}
-    });
-    document.getElementById('close-popup').addEventListener('click',()=>{document.getElementById('popup').classList.remove('show');});
-  </script>
 </body>
 </html>
